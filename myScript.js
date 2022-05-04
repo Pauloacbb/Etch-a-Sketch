@@ -3,6 +3,7 @@
 const container = document.getElementById("container");
 let rows = document.getElementsByClassName("gridRow");
 //let cells = document.getElementsByClassName("cell");
+let newGridSize;
 
 
 defaultGrid();
@@ -34,21 +35,42 @@ function makeColumns(cellNum) {
 };
 
 let cells = document.getElementsByClassName("cell");
-// cells.forEach((cell) => {
-//     cell.addEventListener('click', () => {
-//       alert("Test");
-//     });
-//   });
-
-//console.log(cells);
-//console.log(cells.length);
 
 for(let i=0;i<cells.length;i++){
     //console.log(cells[i])
     cells[i].addEventListener("mouseover",(e) => {
-               console.log(e);
+               //console.log(e);
                //cells[i].classList.add("painted");
                cells[i].style.backgroundColor = "black";
                
             })
 };
+function makeGrid(newGridSize){
+    makeRows(newGridSize);
+    makeColumns(newGridSize);
+    for(let i=0;i<cells.length;i++){
+        
+        cells[i].addEventListener("mouseover",(e) => {
+
+                   cells[i].style.backgroundColor = "black";
+                   
+                })
+    };
+}
+
+function clearBox(elementId)
+{
+    document.getElementById(elementId).innerHTML = "";
+}
+
+const button = document.getElementById("gridButton");
+button.addEventListener('click',()=>{
+    newGridSize = prompt("Type the size of the new grid");
+    newGridSize = parseInt(newGridSize);
+    clearBox("container")
+    console.log(newGridSize);
+    makeGrid(newGridSize);
+    return newGridSize;
+
+});
+

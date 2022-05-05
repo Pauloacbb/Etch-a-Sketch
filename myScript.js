@@ -2,9 +2,8 @@
 
 const container = document.getElementById("container");
 let rows = document.getElementsByClassName("gridRow");
-//let cells = document.getElementsByClassName("cell");
 let newGridSize;
-
+let rowHeight;
 
 defaultGrid();
 //Creates a default grid sized 16x16 
@@ -15,10 +14,11 @@ function defaultGrid() {
 
 //Takes (rows, columns) input and makes a grid
 function makeRows(rowNum) {
-
+    rowHeight = 480/rowNum;
     //Creates rows
     for (r = 0; r < rowNum; r++) {
         let row = document.createElement("div");
+        rowHeight = 480/rowNum;
         container.appendChild(row).className = "gridRow";
     };
 };
@@ -37,12 +37,8 @@ function makeColumns(cellNum) {
 let cells = document.getElementsByClassName("cell");
 
 for(let i=0;i<cells.length;i++){
-    //console.log(cells[i])
-    cells[i].addEventListener("mouseover",(e) => {
-               //console.log(e);
-               //cells[i].classList.add("painted");
-               cells[i].style.backgroundColor = "black";
-               
+    cells[i].addEventListener("mouseover",() => {
+               cells[i].style.backgroundColor = "black";               
             })
 };
 function makeGrid(newGridSize){
@@ -73,4 +69,3 @@ button.addEventListener('click',()=>{
     return newGridSize;
 
 });
-
